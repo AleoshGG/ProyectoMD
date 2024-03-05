@@ -62,17 +62,18 @@ public class Principal {
         switch (opcion) {
             case 1:
                 System.out.println("se muestran todas las categorias");
-                registrarEntrada();
+                //guardar productos en cada opcion admin.guardarProducto
+                admin.guardarProducto(-1, admin.getSinCategoria());
             break;
             case 2:
                 sc.nextLine();
                 System.out.println("Ingrese el nombres del producto: ");
-                int indiceN = admin.busquedaNombre(sc.nextLine());
+                admin.busquedaNombre(sc.nextLine());
             break;
             case 3:
                 sc.nextLine();
                 System.out.println("Ingrese el nombres del producto: ");
-                int indiceC = admin.busquedaCodigo(sc.nextInt());
+                admin.busquedaCodigo(sc.nextInt());
             break;
             default: System.out.println("No valido");
             break;

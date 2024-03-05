@@ -150,7 +150,45 @@ public class Administrador extends Persona {
         return bandera;
     }
 
-    public int busquedaNombre(String nombre){
+    public void guardarProducto(int indice, ArrayList<Producto> categoria){
+        Scanner sc = new Scanner(System.in);
+        int cantidad;
+        
+        if (indice >= 0) {
+            System.out.println("Nombre: "+categoria.get(indice).getNombre());
+            System.out.print("Ingrese la cantidad que desea guardar: ");
+            cantidad = sc.nextInt();
+            
+            categoria.get(indice).getAnaquel().setExistenciaProducto(categoria.get(indice).getAnaquel().getExistenciaProducto()+cantidad);
+            
+        } else {
+            for (int i = 0; i < categoria.size(); i++){
+                System.out.println("Nombre: "+categoria.get(indice).getNombre());
+                //selecciona el que guste y agrega
+            }
+        }
+    }
+
+    public void sacarProducto(int indice, ArrayList<Producto> categoria){
+        Scanner sc = new Scanner(System.in);
+        int cantidad;
+        
+        if (indice >= 0) {
+            System.out.println("Nombre: "+categoria.get(indice).getNombre());
+            System.out.print("Ingrese la cantidad que desea sacar: ");
+            cantidad = sc.nextInt();
+            
+            categoria.get(indice).getAnaquel().setExistenciaProducto(categoria.get(indice).getAnaquel().getExistenciaProducto()-cantidad);
+            
+        } else {
+            for (int i = 0; i < categoria.size(); i++){
+                System.out.println("Nombre: "+categoria.get(indice).getNombre());
+                //selecciona el que guste y saca
+            }
+        }
+    }
+    
+    public void busquedaNombre(String nombre){
         int indice = -1;
         
         int indices[] = {busquedaNombreListas(nombre,alimentosEnlatados),
@@ -176,8 +214,6 @@ public class Administrador extends Persona {
         if (indice == -1 ) {
             System.out.println("No se encontro");
         } 
-        
-        return indice;
     }
     
     public int busquedaNombreListas(String nombre, ArrayList<Producto> categoria){
@@ -189,10 +225,14 @@ public class Administrador extends Persona {
             }
         }
         
+        if (indice >= 0 ){
+            guardarProducto(indice, categoria);
+        }
+        
         return indice;
     }
     
-    public int busquedaCodigo(int codigo){
+    public void busquedaCodigo(int codigo){
         int indice = -1;
         
         int indices[] = {busquedaCodigoListas(codigo,alimentosEnlatados),
@@ -219,7 +259,6 @@ public class Administrador extends Persona {
             System.out.println("No se encontro");
         } 
         
-        return indice;
     }
     
     public int busquedaCodigoListas(int codigo, ArrayList<Producto> categoria){
