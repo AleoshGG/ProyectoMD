@@ -3,11 +3,12 @@ import java.util.Scanner;
 public class Principal {
 
     public static void main(String[] args) {
-        Administrador admin = new Administrador();
-        iniciarSecion(admin);
+        iniciarSecion();
     }
     
-    public static void iniciarSecion(Administrador admin) {
+    public static void iniciarSecion() {
+        Administrador admin = new Administrador();
+        
         if (admin.accederSistema()==true){
             menuPrincipal(admin);
         }
@@ -15,12 +16,11 @@ public class Principal {
     
     public static void menuPrincipal(Administrador admin) {
         Scanner sc = new Scanner(System.in);
-        Inventario inventario =  new Inventario();
-        inventario.eliminarProducto("todas", 0, 0);
+        Inventario inventario =  new Inventario();        
         int opcion = 0;
         
         do {
-        
+            inventario.eliminarProducto("todas", 0, 0);
             System.out.println("\tMI BODEGA");
             System.out.println("Elija una de las opciones: ");
             System.out.println("1. Registrar Productos \n2. Guardar productos \n3. Sacar productos \n4. Eliminar Productos \n5. Ver Limpeza");
@@ -40,10 +40,14 @@ public class Principal {
                     inventario.sacarProducto("Limpieza", 1234, 5);
                 break;
                 case 4:
-                    inventario.eliminarProducto("Limpieza", 1235, 1);
+                    inventario.eliminarProducto("Limpieza", 1234, 1);
                 break;
                 case 5:
-                    System.out.println(inventario.getListaProductos().get(0).getExistenciaProducto());
+                    for (int i = 0; i < inventario.getListaProductos().size(); i++){
+                        System.out.println(inventario.getListaProductos().get(i).getCategoria());
+                        System.out.println(inventario.getListaProductos().get(i).getNombre());
+                        System.out.println(inventario.getListaProductos().get(i).getExistenciaProducto());
+                    }                    
                 break;
                 case 6:
                     opcion = 0;

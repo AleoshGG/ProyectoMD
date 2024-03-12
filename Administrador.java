@@ -13,20 +13,21 @@ public class Administrador extends Persona {
     public boolean accederSistema(){
         Scanner sc = new Scanner(System.in);
         boolean bandera;
-        String password,nombre;
+        String password,usuario;
         int contador = 0;
         
         System.out.println("\tLogin");
         
         do {
-            System.out.println("Ingrese el usuario: ");
-            nombre = sc.nextLine();
-            System.out.println("Ingrese la contraseña: ");
+            System.out.print("Ingrese el usuario: ");
+            usuario = sc.nextLine();
+            System.out.print("Ingrese la contraseña: ");
             password = sc.nextLine();
             
-            if (password.equals(this.password) && nombre.equals(this.nombre)) {
+            if (this.password.equals(password) && nombre.equals(usuario)) {
                 //Validacion exitosa
                 bandera = true;
+                contador = 0;
             } else {
                 contador++;
                 bandera = false;
