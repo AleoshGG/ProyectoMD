@@ -6,6 +6,10 @@ import java.util.GregorianCalendar;
 public class Inventario {
     private ArrayList<Producto> productos = new ArrayList();
     
+    public ArrayList<Producto> getListaProductos() {
+        return productos;
+    }
+    
     public void crearProducto(Proveedor proveedor) {
         Scanner sc = new Scanner(System.in);
         Producto producto = new Producto();
@@ -30,6 +34,8 @@ public class Inventario {
         producto.getAnaquel().setSeccion(sc.nextInt());
         System.out.print("\nIngrese la cantidad de productos a guardar: ");
         producto.setExistenciaProducto(sc.nextInt());
+        
+        productos.add(producto);
         System.out.println("\n\tGUARDADO");
     }
     
@@ -74,7 +80,7 @@ public class Inventario {
             for (int i = 0; i < productos.size(); i++) {
                 if (categoria.equals(productos.get(i).getCategoria()) && codigo == productos.get(i).getCodigoBarras()) {
                     if (cantidad <= productos.get(i).getExistenciaProducto()) {
-                        productos.get(i).setExistenciaProducto(cantidad-productos.get(i).getExistenciaProducto());
+                        productos.get(i).setExistenciaProducto(productos.get(i).getExistenciaProducto()-cantidad);
                         bandera = false;
                     } else {
                         System.out.println("No se puede sacar mas de lo que hay en existencia");
@@ -102,7 +108,7 @@ public class Inventario {
                         bandera = false;
                     }
                 }        
-        }
+        } 
             
         if (opcion == 1) {
             for (int i = 0; i < productos.size(); i++) {
