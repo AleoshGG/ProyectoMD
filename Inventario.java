@@ -19,9 +19,10 @@ public class Inventario {
         producto.setCodigoBarras(sc.nextInt());
         System.out.print("\nIngrese el costo con el que se adquirio: ");
         producto.setCosto(sc.nextDouble());
+        sc.nextLine();
         System.out.print("\nIngrese el nombre: ");
         producto.setNombre(sc.nextLine());
-        sc.nextLine();
+        
         System.out.print("\nIngrese su categoria: ");
         producto.setCategoria(sc.nextLine());
         agregarFecha(producto);
@@ -99,11 +100,11 @@ public class Inventario {
         Calendar fechaActual = Calendar.getInstance();
         
         if (opcion == 0) {
-            if (productos.size()>=1){
                 for (int i = 0; i < productos.size(); i++) {
-                    if (fechaActual.get(Calendar.YEAR) == productos.get(i).getFechaCaducidad().get(Calendar.YEAR) &&
-                        fechaActual.get(Calendar.MONTH) == productos.get(i).getFechaCaducidad().get(Calendar.MONTH) &&    
-                        fechaActual.get(Calendar.DAY_OF_MONTH) == productos.get(i).getFechaCaducidad().get(Calendar.DAY_OF_MONTH)) {
+                    if (fechaActual.get(Calendar.YEAR) >= productos.get(i).getFechaCaducidad().get(Calendar.YEAR) &&
+                        fechaActual.get(Calendar.MONTH) >= productos.get(i).getFechaCaducidad().get(Calendar.MONTH) &&    
+                        fechaActual.get(Calendar.DAY_OF_MONTH) >= productos.get(i).getFechaCaducidad().get(Calendar.DAY_OF_MONTH)) {
+                        System.out.println("PRODUCTO CADUCADO");
                         productos.remove(i);
                         bandera = false;
                     }
@@ -121,7 +122,6 @@ public class Inventario {
                 System.out.println("NO ENCONTRADO");
             }
         }
-                       
-        }
+                      
     }
 }
