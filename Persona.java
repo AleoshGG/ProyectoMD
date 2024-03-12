@@ -1,6 +1,4 @@
-package Bodega;
-
-public class Persona {
+public abstract class Persona {
     //Atributos heredables 
     protected String nombre;
     protected int identificador;
@@ -13,15 +11,8 @@ public class Persona {
     public void setIdentificador(int id){
         identificador = id;
     }
-    
-    public String getNombre(){
-        return nombre;
-    }
-    
-    public int getIdentificador(){
-        return identificador;
-    }
-    
+        
     //Demás métodos
+    protected abstract String verSujeto();
     
 }

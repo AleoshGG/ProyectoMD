@@ -1,10 +1,7 @@
-package Bodega;
-
 public class Anaquel {
     //Atributos
     private int numeroAnaquel;
     private int seccion;
-    private int existenciaProducto;
     
     //Métodos SETTER y GETTER
     public void setNumeroAnaquel(int numero){
@@ -13,11 +10,7 @@ public class Anaquel {
     
     public void setSeccion(int seccion){
         this.seccion = seccion;
-    }
-    
-    public void setExistenciaProducto(int existencia){
-        existenciaProducto = existencia;
-    }
+    }    
     
     public int getNumeroAnaquel(){
         return numeroAnaquel;
@@ -26,10 +19,9 @@ public class Anaquel {
     public int getSeccion(){
         return seccion;
     }
-    
-    public int getExistenciaProducto(){
-        return existenciaProducto;
-    }
-    
+     
     //Demás métodos
+    public String verUbicacion() {
+        return "\nEl producto esta ubicado en: \nAnaquel: "+numeroAnaquel+"  Seccion: "+seccion;
+    }
 }

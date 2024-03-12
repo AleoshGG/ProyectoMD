@@ -1,5 +1,3 @@
-package Bodega;
-
 import java.util.Scanner;
 
 public class Principal {

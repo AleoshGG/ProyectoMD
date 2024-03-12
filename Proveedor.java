@@ -1,5 +1,3 @@
-package Bodega;
-
 public class Proveedor extends Persona {
     //Atributos 
     private int telefono;
@@ -23,4 +21,7 @@ public class Proveedor extends Persona {
     }
     
     //Demás métodos
+    public String verSujeto() {
+        return "\nNombre: "+nombre+"\nDireccion: "+direccion+"\nTelefono: "+telefono+"\nIdentificador: "+identificador;
+    }
 }

@@ -1,6 +1,5 @@
-package Bodega;
-
-import java.util.Date;
+import java.util.Calendar;
+import java.util.Scanner;
 
 public class Producto {
     //Atributos
@@ -8,9 +7,10 @@ public class Producto {
     private double costo;
     private String nombre;
     private String categoria;
-    private Date fechaCaducidad;
+    private Calendar fechaCaducidad;
     private Proveedor proveedor = new Proveedor();
     private Anaquel anaquel = new Anaquel();
+    private int existenciaProducto;
     
     //Métodos SETTER y GETTER
     public void setCodigoBarras(int codigo){
@@ -29,7 +29,7 @@ public class Producto {
         this.categoria = categoria;
     }
     
-    public void setFecha(Date fecha){
+    public void setFecha(Calendar fecha){
         fechaCaducidad = fecha;
     }
     
@@ -39,6 +39,10 @@ public class Producto {
     
     public void setAnaquel(Anaquel anaquel){
         this.anaquel = anaquel;
+    }
+    
+     public void setExistenciaProducto(int existencia){
+        existenciaProducto = existencia;
     }
     
     public int getCodigoBarras(){
@@ -57,7 +61,7 @@ public class Producto {
         return categoria;
     }
     
-    public Date getFechaCaducidad(){
+    public Calendar getFechaCaducidad(){
         return fechaCaducidad;
     }
     
@@ -69,5 +73,34 @@ public class Producto {
         return anaquel;
     }
     
+    public int getExistenciaProducto(){
+        return existenciaProducto;
+    }
+   
     //Demás métodos
+    public void incluirProveedor() {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Ingrese el nombre: ");
+        this.proveedor.setNombre(sc.nextLine());
+      
+        System.out.print("\nIngrese el numero de telefono: ");
+        this.proveedor.setTelefono(sc.nextInt());
+        sc.nextLine();
+        System.out.print("\nIngrese la direccion: ");
+        this.proveedor.setDireccion(sc.nextLine());
+        
+    }
+    
+    public void incluirAnaquel() {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Ingrese el numero de anaquel: ");
+        this.anaquel.setNumeroAnaquel(sc.nextInt());
+
+        System.out.print("\nIngrese el numero de seccion: ");
+        this.anaquel.setSeccion(sc.nextInt());
+       
+    }
+    
 }
