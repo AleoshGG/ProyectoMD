@@ -22,8 +22,7 @@ public class Inventario {
         sc.nextLine();
         System.out.print("Ingrese el nombre: ");
         producto.setNombre(sc.nextLine());        
-        System.out.print("Ingrese su categoria: ");
-        producto.setCategoria(sc.nextLine());
+        producto.setCategoria(elegirCategoria());
         agregarFecha(producto);
         System.out.println("\tUbicacion");
         System.out.print("Ingrese el numero de anaquel: ");
@@ -35,6 +34,45 @@ public class Inventario {
     
         productos.add(producto);
         
+    }
+    
+    public static String elegirCategoria() {
+        Scanner sc = new Scanner(System.in);
+        String categoria = "Sin categoria";
+        int opcion;
+        System.out.println("\nElija la categoria");
+        System.out.print("1. Alimentos Enlatados\n2. Lacteos\n3. Bebidas\n4. Panaderia\n5. Carnes y embutidos\n6. Cereales y Legumbres\n7. Golosinas\n8. Limpieza\n9. Condimentos y Especias\n10. Cuidado personal\n11. Para el hogar\n12. Sin categoria\n>> ");
+        opcion = sc.nextInt();
+        
+        switch (opcion) {
+            case 1: categoria = "Alimentos Enlatados";
+            break;
+            case 2: categoria = "Lacteos";
+            break;
+            case 3: categoria = "Bebidas";
+            break;
+            case 4: categoria = "Panaderia";
+            break;
+            case 5: categoria = "Carnes y Embutidos";
+            break;
+            case 6: categoria = "Cereales y Legumbres";
+            break;
+            case 7: categoria = "Golosinas";
+            break;
+            case 8: categoria = "Limpieza";
+            break;
+            case 9: categoria = "Condimentos y Especias";
+            break;
+            case 10: categoria = "Cuidado personal";
+            break;
+            case 11: categoria = "Para el hogar";
+            break;
+            case 12: categoria = "Sin categoria";
+            break;
+            default:System.out.println("Se aniadio a SIN CATEGORIA");
+            break;
+        }
+        return categoria;
     }
     
     private void agregarFecha(Producto producto) {

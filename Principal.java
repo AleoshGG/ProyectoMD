@@ -62,7 +62,7 @@ public class Principal {
             
         } while (opcion != 0);
     }
-    
+        
     public static void agregarProveedor(ArrayList<Proveedor> proveedores, Inventario inventario) {
         Scanner sc = new Scanner(System.in);
         int opcion;
@@ -118,8 +118,7 @@ public class Principal {
         int codigo;
         
         System.out.println("\n\tSacar Productos");
-        System.out.print("Ingrese la categoria del producto: ");
-        categoria = sc.nextLine();
+        categoria = inventario.elegirCategoria();
         System.out.print("Ingrese el codigo de barras: ");
         codigo = sc.nextInt();
         System.out.print("Ingrese la cantidad a sacar: ");
@@ -135,8 +134,7 @@ public class Principal {
         int codigo;
         
         System.out.println("\n\tGuardar Productos");
-        System.out.print("Ingrese la categoria del producto: ");
-        categoria = sc.nextLine();
+        categoria = inventario.elegirCategoria();
         System.out.print("Ingrese el codigo de barras: ");
         codigo = sc.nextInt();
         System.out.print("Ingrese la cantidad a guardar: ");
@@ -151,8 +149,7 @@ public class Principal {
         int codigo;
         
         System.out.println("\n\tEliminar Producto");
-        System.out.print("Ingrese la categoria del producto: ");
-        categoria = sc.nextLine();
+        categoria = inventario.elegirCategoria();
         System.out.print("Ingrese el codigo de barras: ");
         codigo = sc.nextInt();
         inventario.eliminarProducto(categoria, codigo, 1);
@@ -165,8 +162,7 @@ public class Principal {
         String nombre;
         
         System.out.println("\n\tVer la ubicacion del producto");
-        System.out.print("Ingrese la categoria del producto: ");
-        categoria = sc.nextLine();
+        categoria = inventario.elegirCategoria();
         System.out.print("Ingrese la nombre del producto: ");
         nombre = sc.nextLine();
         
@@ -181,6 +177,8 @@ public class Principal {
             if (bandera) {
                 System.out.println("NO ENCONTRADO");
             }
+        } else {
+            System.out.println("Aun no hay productos");
         }
         
     }
