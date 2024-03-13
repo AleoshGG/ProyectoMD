@@ -25,7 +25,7 @@ public class Principal {
             inventario.eliminarProducto("todas", 0, 0);
             System.out.println("\tMI BODEGA");
             System.out.println("Elija una de las opciones: ");
-            System.out.println("1. Registrar Productos \n2. Guardar productos \n3. Sacar productos \n4. Eliminar Productos \n5. Ver Limpeza");
+            System.out.println("1. Registrar Productos \n2. Guardar productos \n3. Sacar productos \n4. Eliminar Productos \n5. Ver cantidad productos \n6. Ver ubicacion productos\n7. Ver proveedores\n8. Salir");
             System.out.print(">> ");
             opcion = sc.nextInt();
 
@@ -36,23 +36,24 @@ public class Principal {
                     System.out.println("\n\tGUARDADO");
                 break;
                 case 2:
-                    inventario.guaradarProducto("Limpieza", 1234, 5);
+                    guardarProductos(inventario);
                 break;
                 case 3:
-                    inventario.sacarProducto("Limpieza", 1234, 5);
+                    sacarProductos(inventario);
                 break;
                 case 4:
-                    inventario.eliminarProducto("Limpieza", 1234, 1);
+                    eliminarProducto(inventario);
                 break;
                 case 5:
-                    for (int i = 0; i < inventario.getListaProductos().size(); i++){
-                        System.out.println("Proveedor: "+inventario.getListaProductos().get(i).getProveedor().verSujeto());
-                        System.out.println(inventario.getListaProductos().get(i).getCategoria());
-                        System.out.println(inventario.getListaProductos().get(i).getNombre());
-                        System.out.println(inventario.getListaProductos().get(i).getExistenciaProducto());
-                    }                    
+                    verCantidadProductos(inventario);                  
                 break;
                 case 6:
+                    verUbicacionProducto(inventario);
+                break;
+                case 7:
+                    verProveedores(proveedores);
+                break;
+                case 8:
                     opcion = 0;
                 break;
                 default: System.out.println("No valido");
@@ -109,41 +110,101 @@ public class Principal {
         inventario.getListaProductos().get(inventario.getListaProductos().size()-1).setProveedor(proveedor);
         proveedores.add(proveedor);
     } 
-    
-    public static void filtrarProductos(Administrador admin){
+     
+    public static void sacarProductos(Inventario inventario){
         Scanner sc = new Scanner(System.in);
-        int opcion = 0;
+        int cantidad;
+        String categoria;
+        int codigo;
         
-        System.out.println("\tFlitro de productos");
-        System.out.println("1. Seleccionar categoria\n 2. Buscar por nombre \n3.Buscar por codigo de barras");
-        System.out.print(">> ");
-        opcion = sc.nextInt();
+        System.out.println("\n\tSacar Productos");
+        System.out.print("Ingrese la categoria del producto: ");
+        categoria = sc.nextLine();
+        System.out.print("Ingrese el codigo de barras: ");
+        codigo = sc.nextInt();
+        System.out.print("Ingrese la cantidad a sacar: ");
+        cantidad = sc.nextInt();
         
-        switch (opcion) {
-            case 1:
-                System.out.println("se muestran todas las categorias");
-                //guardar productos en cada opcion admin.guardarProducto
-                
-            break;
-            case 2:
-                sc.nextLine();
-                System.out.println("Ingrese el nombres del producto: ");
-               
-            break;
-            case 3:
-                sc.nextLine();
-                System.out.println("Ingrese el nombres del producto: ");
-                
-            break;
-            default: System.out.println("No valido");
-            break;
+        inventario.sacarProducto(categoria, codigo, cantidad);
+    }
+    
+    public static void guardarProductos(Inventario inventario){
+        Scanner sc = new Scanner(System.in);
+        int cantidad;
+        String categoria;
+        int codigo;
+        
+        System.out.println("\n\tGuardar Productos");
+        System.out.print("Ingrese la categoria del producto: ");
+        categoria = sc.nextLine();
+        System.out.print("Ingrese el codigo de barras: ");
+        codigo = sc.nextInt();
+        System.out.print("Ingrese la cantidad a guardar: ");
+        cantidad = sc.nextInt();
+        
+        inventario.guardarProducto(categoria, codigo, cantidad);
+    }
+    
+    public static void eliminarProducto(Inventario inventario){
+        Scanner sc = new Scanner(System.in);
+        String categoria;
+        int codigo;
+        
+        System.out.println("\n\tEliminar Producto");
+        System.out.print("Ingrese la categoria del producto: ");
+        categoria = sc.nextLine();
+        System.out.print("Ingrese el codigo de barras: ");
+        codigo = sc.nextInt();
+        inventario.eliminarProducto(categoria, codigo, 1);
+    }
+    
+    public static void verUbicacionProducto(Inventario inventario) {
+        Scanner sc = new Scanner(System.in);
+        boolean bandera = true;
+        String categoria;
+        String nombre;
+        
+        System.out.println("\n\tVer la ubicacion del producto");
+        System.out.print("Ingrese la categoria del producto: ");
+        categoria = sc.nextLine();
+        System.out.print("Ingrese la nombre del producto: ");
+        nombre = sc.nextLine();
+        
+        if (inventario.getListaProductos().size()>=1) {
+            for(int i = 0; i < inventario.getListaProductos().size(); i++) {
+                if (categoria.equals(inventario.getListaProductos().get(i).getCategoria()) && nombre.equals(inventario.getListaProductos().get(i).getNombre())) {
+                    System.out.println(inventario.getListaProductos().get(i).getAnaquel().verUbicacion());
+                    bandera = false;
+                }
+            }
+
+            if (bandera) {
+                System.out.println("NO ENCONTRADO");
+            }
         }
         
     }
     
-    public static void sacarProductos(){}
+    public static void verProveedores(ArrayList<Proveedor> proveedores){
+        System.out.println("\n\tProveedores");
+        if (proveedores.size()>=1) {
+            for (int i = 0; i < proveedores.size(); i++) {
+                System.out.println(proveedores.get(i).verSujeto());
+            }
+        } else {
+            System.out.println("Aun no hay proveedores");
+        }
+    }
     
-    public static void verCategorias(){}
-    
-    public static void verProveedores(){}
+    public static void verCantidadProductos(Inventario inventario) {
+        System.out.println("\n\tDe los productos");
+        
+        if (inventario.getListaProductos().size()>=1) {
+            for (int i = 0; i < inventario.getListaProductos().size(); i++) {
+                System.out.println("Categoria: "+inventario.getListaProductos().get(i).getCategoria()+" Nombre: "+inventario.getListaProductos().get(i).getNombre()+" Cantidad: "+inventario.getListaProductos().get(i).getExistenciaProducto());
+            }
+        } else {
+            System.out.println("Aun no hay productos");
+        }
+    }
 }

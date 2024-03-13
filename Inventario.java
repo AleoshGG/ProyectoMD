@@ -54,7 +54,7 @@ public class Inventario {
         producto.setFecha(fechaCaducidad);
     }
     
-    public void guaradarProducto(String categoria, int codigo, int cantidad) {
+    public void guardarProducto(String categoria, int codigo, int cantidad) {
         boolean bandera = true;
         
         if (productos.size()>=1){
