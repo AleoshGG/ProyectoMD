@@ -10,34 +10,31 @@ public class Inventario {
         return productos;
     }
     
-    public void crearProducto(Proveedor proveedor) {
+    public void crearProducto() {
         Scanner sc = new Scanner(System.in);
         Producto producto = new Producto();
         
         System.out.println("\tREGISTRO");
         System.out.print("Ingrese el codigo de barras: ");
         producto.setCodigoBarras(sc.nextInt());
-        System.out.print("\nIngrese el costo con el que se adquirio: ");
+        System.out.print("Ingrese el costo con el que se adquirio: ");
         producto.setCosto(sc.nextDouble());
         sc.nextLine();
-        System.out.print("\nIngrese el nombre: ");
-        producto.setNombre(sc.nextLine());
-        
-        System.out.print("\nIngrese su categoria: ");
+        System.out.print("Ingrese el nombre: ");
+        producto.setNombre(sc.nextLine());        
+        System.out.print("Ingrese su categoria: ");
         producto.setCategoria(sc.nextLine());
         agregarFecha(producto);
-        producto.setProveedor(proveedor);
-        sc.nextLine();
         System.out.println("\tUbicacion");
         System.out.print("Ingrese el numero de anaquel: ");
         producto.getAnaquel().setNumeroAnaquel(sc.nextInt());
-        System.out.print("\nIngrese el numero de seccion: ");
+        System.out.print("Ingrese el numero de seccion: ");
         producto.getAnaquel().setSeccion(sc.nextInt());
-        System.out.print("\nIngrese la cantidad de productos a guardar: ");
+        System.out.print("Ingrese la cantidad de productos a guardar: ");
         producto.setExistenciaProducto(sc.nextInt());
-        
+    
         productos.add(producto);
-        System.out.println("\n\tGUARDADO");
+        
     }
     
     private void agregarFecha(Producto producto) {
@@ -45,11 +42,11 @@ public class Inventario {
         int year, month, day;
         
         System.out.println("\n\tFecha de caducidad");
-        System.out.print("\nIngrese el anio: ");
+        System.out.print("Ingrese el anio: ");
         year = sc.nextInt();
-        System.out.print("\nIngrese el mes: ");
+        System.out.print("Ingrese el mes: ");
         month = sc.nextInt();
-        System.out.print("\nIngrese el dia: ");
+        System.out.print("Ingrese el dia: ");
         day = sc.nextInt();
         
         Calendar fechaCaducidad = new GregorianCalendar(year,month,day);

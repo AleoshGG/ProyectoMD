@@ -1,10 +1,10 @@
 public class Proveedor extends Persona {
     //Atributos 
-    private int telefono;
+    private long telefono;
     private String direccion;
     
     //Métodos SETTER y GETTER
-    public void setTelefono(int numero){
+    public void setTelefono(long numero){
         telefono = numero;
     }
     
@@ -12,7 +12,7 @@ public class Proveedor extends Persona {
         this.direccion = direccion;
     }
     
-    public int getTelefono(){
+    public long getTelefono(){
         return telefono;
     }
     

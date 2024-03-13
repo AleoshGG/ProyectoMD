@@ -11,6 +11,10 @@ public abstract class Persona {
     public void setIdentificador(int id){
         identificador = id;
     }
+    
+    public String getNombre() {
+        return nombre;
+    }
         
     //Demás métodos
     protected abstract String verSujeto();
