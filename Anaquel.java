@@ -42,7 +42,7 @@ public class Anaquel {
             try {
                 numero = ingresarEntero(mensaje);
             } catch (InputMismatchException e) {
-                System.out.println("Ingrese numeros por favor");
+                System.out.println("Ingrese numeros enteros por favor");
             }
         }
         

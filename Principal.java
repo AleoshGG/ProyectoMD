@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Principal {
@@ -26,8 +27,11 @@ public class Principal {
             System.out.println("\tMI BODEGA");
             System.out.println("Elija una de las opciones: ");
             System.out.println("1. Registrar Productos \n2. Guardar productos \n3. Sacar productos \n4. Eliminar Productos \n5. Ver productos \n6. Ver la ubicacion de un producto\n7. Ver proveedores\n8. Modificar un producto\n9. Salir");
-            System.out.print(">> ");
-            opcion = sc.nextInt();
+            try {
+                opcion = ingresarEntero(">> ");
+            } catch (InputMismatchException e) {
+                opcion = 15;
+            }
 
             switch (opcion) {
                 case 1:                                      
@@ -84,6 +88,14 @@ public class Principal {
         return bandera;
     }
     
+    private static int ingresarEntero(String mensaje) throws InputMismatchException {
+        Scanner sc = new Scanner(System.in);
+        int numero;
+        System.out.print(mensaje);
+        numero = sc.nextInt();
+        return numero;
+    }
+    
     public static void verUbicacionProducto(Inventario inventario) {
         if (leerLista(inventario.getListaProductos(),"Aun no hay productos")) {
             Scanner sc = new Scanner(System.in);
@@ -127,5 +139,5 @@ public class Principal {
             }
         }
     }
-
+    
 }
