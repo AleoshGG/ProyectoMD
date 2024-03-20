@@ -21,7 +21,7 @@ public class Administrador extends Persona {
         do {
             System.out.print("Ingrese el usuario: ");
             usuario = sc.nextLine();
-            System.out.print("Ingrese la contraseña: ");
+            System.out.print("Ingrese la contrasenia: ");
             password = sc.nextLine();
             
             if (this.password.equals(password) && nombre.equals(usuario)) {
@@ -39,7 +39,7 @@ public class Administrador extends Persona {
     }
     
     public String verSujeto() {
-        return "\nNombre: "+nombre+"\nIdentificador: "+identificador;
+        return "\nNombre: "+nombre;
     }
     
 }
