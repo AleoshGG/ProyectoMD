@@ -43,7 +43,7 @@ public class Producto {
     }
     
      public void setExistenciaProducto(int existencia){
-        existenciaProducto = existencia;
+        existenciaProducto = validarNumero(existencia, "No ingrese valores negativos", "Ingrese la cantidad de productos a guardar: ");
     }
     
     public int getCodigoBarras(){
@@ -81,34 +81,29 @@ public class Producto {
     //Demás métodos
     public void incluirProveedor() {
         Scanner sc = new Scanner(System.in);
-        long numero;
         
         try {
             System.out.print("Ingrese el nombre: ");
             this.proveedor.setNombre(sc.nextLine());
-
-            //System.out.print("\nIngrese el numero de telefono: ");
-            this.proveedor.setTelefono(proveedor.ingresarLong("Ingrese el numero de telefono: "));
-     
-        } catch (InputMismatchException e) {
-            System.out.println("Ingrese numeros por favor");
-        }
-           
+            long numero = ingresarLong("Ingrese el numero de telefono: ");
+            this.proveedor.setTelefono(numero);
             System.out.print("\nIngrese la direccion: ");
             this.proveedor.setDireccion(sc.nextLine());
-        
-       
+        } catch (InputMismatchException e) {
+            System.out.println("Vuelva a intentarlo");
+        }
         
     }
     
     public void incluirAnaquel() {
-        Scanner sc = new Scanner(System.in);
-        
-        System.out.print("Ingrese el numero de anaquel: ");
-        this.anaquel.setNumeroAnaquel(sc.nextInt());
-
-        System.out.print("\nIngrese el numero de seccion: ");
-        this.anaquel.setSeccion(sc.nextInt());
+        try {
+            int numeroA = ingresarEntero("Ingrese el numero de anaquel: : ");
+            this.anaquel.setNumeroAnaquel(numeroA);
+            int numeroS = ingresarEntero("Ingrese el numero de seccion: ");
+            this.anaquel.setSeccion(numeroS);
+        } catch (InputMismatchException e) {
+            System.out.println("Intentelo de nuevo");
+        }
        
     }
     
@@ -139,12 +134,25 @@ public class Producto {
         Scanner sc = new Scanner(System.in);
         long numero;
         System.out.print(mensaje);
-        numero = sc.nextInt();
+        numero = sc.nextLong();
         return numero;
     }
     
     public int validarNumero(int numero, int limiteI,int limiteD, String advertencia, String mensaje){
         while (numero < limiteI || numero > limiteD) {
+            System.out.println(advertencia+" vuelva a intenterlo");
+            try {
+                numero = ingresarEntero(mensaje);
+            } catch (InputMismatchException e) {
+                System.out.println("Ingrese numeros por favor");
+            }
+        }
+        
+        return numero;
+    }
+    
+    public int validarNumero(int numero, String advertencia, String mensaje){
+        while (numero < 1) {
             System.out.println(advertencia+" vuelva a intenterlo");
             try {
                 numero = ingresarEntero(mensaje);

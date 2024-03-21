@@ -51,7 +51,7 @@ public class Inventario {
                 producto.setCategoria(elegirCategoria());              
                 agregarFecha(producto);
                 System.out.println("\tUbicacion");
-                int numeroA = ingresarEntero("Ingrese el numero de anaquel: : ");
+                int numeroA = ingresarEntero("Ingrese el numero de anaquel: ");
                 producto.getAnaquel().setNumeroAnaquel(numeroA);
                 int numeroS = ingresarEntero("Ingrese el numero de seccion: ");
                 producto.getAnaquel().setSeccion(numeroS);

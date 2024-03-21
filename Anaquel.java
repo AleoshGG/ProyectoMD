@@ -44,7 +44,7 @@ public class Anaquel {
             } catch (InputMismatchException e) {
                 System.out.println("Ingrese numeros enteros por favor");
             }
-        }
+        } 
         
         return numero;
     }
