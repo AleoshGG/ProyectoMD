@@ -267,7 +267,8 @@ public class Inventario {
         
         if (comportamiento == 0) {
                 for (int i = 0; i < productos.size(); i++) {
-                    if (productos.get(i).getFechaCaducidad().before(fechaActual)) {
+                    if (!productos.get(i).getFechaCaducidad().before(fechaActual)) {
+                    } else {
                         System.out.println("PRODUCTO CADUCADO");
                         productos.remove(i);
                         bandera = false;

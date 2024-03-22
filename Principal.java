@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -16,8 +17,7 @@ public class Principal {
         }
     }
     
-    public static void menuPrincipal(Administrador admin) {
-        Scanner sc = new Scanner(System.in);        
+    public static void menuPrincipal(Administrador admin) {      
         Inventario inventario =  new Inventario();
         ArrayList<Proveedor> proveedores = new ArrayList();        
         int opcion = 0;
@@ -26,9 +26,8 @@ public class Principal {
             inventario.eliminarProducto( 0);
             System.out.println("\tMI BODEGA");
             System.out.println("Elija una de las opciones: ");
-            System.out.println("1. Registrar Productos \n2. Guardar productos \n3. Sacar productos \n4. Eliminar Productos \n5. Ver productos \n6. Ver la ubicacion de un producto\n7. Ver proveedores\n8. Modificar un producto\n9. Salir");
             try {
-                opcion = ingresarEntero(">> ");
+                opcion = ingresarEntero("1. Registrar Productos \n2. Guardar productos \n3. Sacar productos \n4. Eliminar Productos \n5. Ver productos \n6. Ver la ubicacion de un producto\n7. Ver proveedores\n8. Modificar un producto\n9. Salir\n>> ");
             } catch (InputMismatchException e) {
                 opcion = 15;
             }
@@ -105,7 +104,7 @@ public class Principal {
 
             System.out.println("\n\tVer la ubicacion del producto");
             categoria = inventario.elegirCategoria();
-            System.out.print("Ingrese la nombre del producto: ");
+            System.out.print("Ingrese el nombre del producto: ");
             nombre = sc.nextLine();
             
             for(int i = 0; i < inventario.getListaProductos().size(); i++) {
@@ -132,10 +131,20 @@ public class Principal {
     
     public static void verCantidadProductos(Inventario inventario) {
         System.out.println("\n\tDe los productos");
-        
+        boolean bandera = true;
         if (leerLista(inventario.getListaProductos(),"Aun no hay productos")) {
+            String categoria = inventario.elegirCategoria();
+            
             for (int i = 0; i < inventario.getListaProductos().size(); i++) {
-                System.out.println("Categoria: "+inventario.getListaProductos().get(i).getCategoria()+" Nombre: "+inventario.getListaProductos().get(i).getNombre()+" Cantidad: "+inventario.getListaProductos().get(i).getExistenciaProducto()+" Codigo de barras: "+inventario.getListaProductos().get(i).getCodigoBarras());
+                if (inventario.getListaProductos().get(i).getCategoria().equals(categoria)) {
+                    System.out.println("Categoria: "+inventario.getListaProductos().get(i).getCategoria()+" Nombre: "+inventario.getListaProductos().get(i).getNombre()+" Cantidad: "+inventario.getListaProductos().get(i).getExistenciaProducto()+" Codigo de barras: "+inventario.getListaProductos().get(i).getCodigoBarras()
+                                      +" Costo: "+inventario.getListaProductos().get(i).getCosto()+" Caducidad: "+inventario.getListaProductos().get(i).getFechaCaducidad().get(Calendar.YEAR)+"-"+inventario.getListaProductos().get(i).getFechaCaducidad().get(Calendar.MONTH)+"-"+inventario.getListaProductos().get(i).getFechaCaducidad().get(Calendar.DAY_OF_MONTH));
+                    bandera = false;
+                }    
+            }
+            
+            if (bandera) {
+                System.out.println("No hay productos de esta categoria");
             }
         }
     }
